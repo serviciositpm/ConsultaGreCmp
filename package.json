@@ -18,5 +18,15 @@
   "bugs": {
     "url": "https://github.com/serviciositpm/ConsultaGreCmp/issues"
   },
-  "homepage": "https://github.com/serviciositpm/ConsultaGreCmp#readme"
+  "homepage": "https://github.com/serviciositpm/ConsultaGreCmp#readme",
+  "dependencies": {
+    "fast-xml-parser": "^4.4.0",
+    "handlebars": "^4.7.8",
+    "msnodesqlv8": "^4.2.1",
+    "mssql": "^11.0.1",
+    "node-cron": "^3.0.3",
+    "puppeteer": "^22.13.0",
+    "soap": "^1.1.0",
+    "winston": "^3.13.1"
+  }
 }
