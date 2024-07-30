@@ -1,6 +1,7 @@
 const sql               =   require('mssql/msnodesqlv8');
 const cron              =   require('node-cron');
 const config            =   require('./config/configDb');
+const {processRecords}  =   require('./helpers/executeprocess');
 //--------------------------------------------
 //Validacion que se COnecte a la BD
 //--------------------------------------------
@@ -25,8 +26,8 @@ const main = async () => {
         //--------------------------------------------
         try {
             //const msg   = await processRecords();
-            console.log('Ingreso por el dato correcto');
-            //cron.schedule('* * * * *', processRecords);
+            /* console.log('Ingreso por el dato correcto'); */
+            cron.schedule('* * * * *', processRecords);
             //console.log(msg);
         } catch (error) {
             console.error('Error al Ejecutar Procesos:', error);
