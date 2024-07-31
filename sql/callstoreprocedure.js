@@ -1,5 +1,5 @@
 const sql       =   require('mssql/msnodesqlv8');
-const {config}    =   require('../config/configDb');
+const {config}  =   require('../config/configDb');
 /*
  * Invocar Procedimiento Sql que devuelve los programas de pesca por día
  */
@@ -44,5 +44,6 @@ const insertDataSpGreCmp = async (grouping,conductor,guia,placa,desde,horasalida
 };
 
 module.exports={
+    consultarDatos,
     insertDataSpGreCmp
 }
