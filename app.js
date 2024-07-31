@@ -1,6 +1,6 @@
 const sql               =   require('mssql/msnodesqlv8');
 const cron              =   require('node-cron');
-const config            =   require('./config/configDb');
+const {config}            =   require('./config/configDb');
 const {processRecords}  =   require('./helpers/executeprocess');
 //--------------------------------------------
 //Validacion que se COnecte a la BD

@@ -1,5 +1,5 @@
 const config={
-    user: 'user',
+    user: 'sa',
     password: '84+-blaster32',
     server: '10.100.120.7',
     database: 'SipeDes',
@@ -11,5 +11,21 @@ const config={
     }
     
 }
+const configPrueba={
+    user: 'sa',
+    password: '84+-blaster32',
+    server: '10.100.120.8',
+    database: 'pSipe4',
+    driver: 'msnodesqlv8',
+    
+    options: {
+        enableArithAbort: true,
+        trustedConnection: true
+    }
+    
+}
 
-module.exports = config;
+module.exports = {
+    config,
+    configPrueba
+};
