@@ -1,7 +1,6 @@
 const   {consultarDatos}            =   require('../sql/callstoreprocedure');
-const   {insertData}                =   require('../sql/models')
 const   {datosJsonOntrack}          =   require('../functions/obtaindata');
-
+const   {insertDataOnTable}         =   require('../sql/models');
 /*
 *   Permite Ejecutar el proceso para obtencion de datos e ingreso de información
 */
@@ -35,13 +34,16 @@ const processRecords = async () => {
                 /*
                  * Paso 2 : Consulto a Ontrack por Programa de Pesca
                  */
-                const jsonontrack   = await datosJsonOntrack(item.prgPesca);
+                const   jsonontrack     =   await datosJsonOntrack(item.prgPesca);
                 /*
                  * Paso 3 : Insertar los datos del objeto Tiempo en ruta 
+                 * Se Valida que el objeto no venga vació para proceder con lo demás 
                  */
-                /* const createTable = await createTableIfNotExists() */
-                const datinsert     =   await insertData(jsonontrack);
-                console.log('Creacion Tabla',datinsert);
+                if (jsonontrack || jsonontrack.length > 0) {
+                    const   spname          =   'Sp_Cmp_Insertar_Tiempos_Guias'
+                    const   insertardatos   =   await insertDataOnTable(jsonontrack,spname);   
+                }
+                
 
                 //console.log(`Código: ${item.codmsg}, Programa de Pesca: ${item.prgPesca}`);
             }

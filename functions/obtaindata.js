@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 const datosJsonOntrack = async (programapesca)=>{
-    let datosjson = ''
+    let datosjson ;
     try {
         /*
         * Consumo del Endpoint de Ontrack que nos devuelve los datos por programas de pesca  
@@ -10,16 +10,15 @@ const datosJsonOntrack = async (programapesca)=>{
           input_data: programapesca
         });
         const   data        =   response.data;
-                datosjson   =   data['Tiempo en ruta'].rows;
-    
-        // Manejar la respuesta JSON
-        /* console.log('Desviaciones de ruta:', data['Desviaciones de ruta']);
-        console.log('Paradas No Permitidas:', data['Paradas No Permitidas']);
-        console.log('Tiempo en Puntos de Control:', data['Tiempo en Puntos de Control']);
-        console.log('Tiempo en ruta:', data['Tiempo en ruta']); */
+        if (data.error) {
+            datosjson   =   {};
+        }else{
+            datosjson   =   data['Tiempo en ruta'].rows;
+        }
         console.log(datosjson)
     } catch (error) {
-        console.error('Error al obtener los datos del endpoint:', error);
+        /* console.error('Error al obtener los datos del endpoint:', error); */
+        datosjson   =   {};
     }
     return datosjson;
 }
