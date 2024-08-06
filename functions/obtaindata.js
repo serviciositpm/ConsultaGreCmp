@@ -15,7 +15,7 @@ const datosJsonOntrack = async (programapesca)=>{
         }else{
             datosjson   =   data['Tiempo en ruta'].rows;
         }
-        console.log(datosjson)
+    /*     console.log(datosjson) */
     } catch (error) {
         /* console.error('Error al obtener los datos del endpoint:', error); */
         datosjson   =   {};

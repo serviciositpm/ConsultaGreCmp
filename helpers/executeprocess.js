@@ -34,14 +34,17 @@ const processRecords = async () => {
                 /*
                  * Paso 2 : Consulto a Ontrack por Programa de Pesca
                  */
-                const   jsonontrack     =   await datosJsonOntrack(item.prgPesca);
+                const   jsonontrack            =   await datosJsonOntrack(item.prgPesca);
                 /*
-                 * Paso 3 : Insertar los datos del objeto Tiempo en ruta 
-                 * Se Valida que el objeto no venga vació para proceder con lo demás 
-                 */
-                if (jsonontrack || jsonontrack.length > 0) {
+                * Paso 3 : Insertar los datos del objeto Tiempo en ruta 
+                * Se Valida que el objeto no venga vació para proceder con lo demás 
+                */
+                //const   existe         =   !!infoTributaria.agenteRetencion;
+                //const agenteRetencion               =   existeagenteretencion ? infoTributaria.agenteRetencion[0]: '';//Valor Neto
+                if (jsonontrack.length > 0) {
                     const   spname          =   'Sp_Cmp_Insertar_Tiempos_Guias'
                     const   insertardatos   =   await insertDataOnTable(jsonontrack,spname);   
+                    
                     /*
                     * Paso 4 : Procesar las guía y enviarlas a guardar a cada una de las que les corresponde 
                     */
