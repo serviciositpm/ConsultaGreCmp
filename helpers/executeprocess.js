@@ -44,17 +44,13 @@ const processRecords = async () => {
                 if (jsonontrack.length > 0) {
                     const   spname          =   'Sp_Cmp_Insertar_Tiempos_Guias'
                     const   insertardatos   =   await insertDataOnTable(jsonontrack,spname);   
-                    
-                    /*
-                    * Paso 4 : Procesar las guía y enviarlas a guardar a cada una de las que les corresponde 
-                    */
                 }
-
-                
-
                 //console.log(`Código: ${item.codmsg}, Programa de Pesca: ${item.prgPesca}`);
-            }
-
+            }              
+            /*
+            * Paso 4 : Procesar las guía y enviarlas a guardar a la tabla de cabecera y detalle 
+            */
+            //Sp_Cmp_Procesar_Guias_Ontrack
         } else {
             msg = {
                 'codmsg': 400,
