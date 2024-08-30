@@ -15,7 +15,7 @@ const configPrueba={
     user: 'sa',
     password: '84+-blaster32',
     server: '10.100.120.8',
-    database: 'pSipe4',
+    database: 'SipeDes',
     driver: 'msnodesqlv8',
     
     options: {

@@ -50,7 +50,8 @@ const processRecords = async () => {
             /*
             * Paso 4 : Procesar las guía y enviarlas a guardar a la tabla de cabecera y detalle 
             */
-            //Sp_Cmp_Procesar_Guias_Ontrack
+            const datosGreProcesadas = await consultarDatos('PRG', 'Sp_Cmp_Procesar_Guias_Ontrack');
+            
         } else {
             msg = {
                 'codmsg': 400,
