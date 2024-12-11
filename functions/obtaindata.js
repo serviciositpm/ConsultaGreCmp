@@ -1,13 +1,14 @@
 const axios = require('axios');
 
-const datosJsonOntrack = async (programapesca)=>{
+const datosJsonOntrack = async (programapesca,hours)=>{
     let datosjson ;
     try {
         /*
         * Consumo del Endpoint de Ontrack que nos devuelve los datos por programas de pesca  
         */
         const response = await axios.post('http://159.223.161.160:8020/api/guiaList', {
-          input_data: programapesca
+          input_data: programapesca,
+          hours:hours
         });
         const   data        =   response.data;
         if (data.error) {
