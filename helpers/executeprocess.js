@@ -34,7 +34,7 @@ const processRecords = async () => {
                 /*
                  * Paso 2 : Consulto a Ontrack por Programa de Pesca
                  */
-                const   tiempo_horas            =   14
+                const   tiempo_horas            =   24
                 const   jsonontrack             =   await datosJsonOntrack(item.prgPesca,tiempo_horas);
                 /*
                 * Paso 3 : Insertar los datos del objeto Tiempo en ruta 
