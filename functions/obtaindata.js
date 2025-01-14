@@ -14,7 +14,7 @@ const datosJsonOntrack = async (programapesca,hours)=>{
         if (data.error) {
             datosjson   =   {};
         }else{
-            datosjson   =   data['Tiempo en ruta'].rows;
+            datosjson   =   data['Tiempo en Puntos de Control'].rows;
         }
     /*     console.log(datosjson) */
     } catch (error) {

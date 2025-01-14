@@ -42,8 +42,31 @@ const insertDataSpGreCmp = async (grouping,conductor,guia,placa,desde,horasalida
         console.log(error);
     }
 };
+/*
+* Invocación de Procedimiento en Sql para poder insertar datos de las guias con sus tiempos
+*/
+const insertDataSpGreCmpTiemposPtoControl = async (grouping,conductor,guia,placa,ptoControl,entrada,salida,permanencia, query) => {
+    try {
+        let pool = await sql.connect(config);
+        let datosJson = await pool.request()
+            .input('Grouping', sql.Char,grouping)
+            .input('Conductor', sql.Char,conductor)
+            .input('Guia', sql.Char,guia)
+            .input('Placa', sql.Char,placa)
+            .input('ptoControl', sql.Char,ptoControl)
+            .input('entrada', sql.Char,entrada)
+            .input('salida', sql.Char,salida)
+            .input('permanencia', sql.Char,permanencia)
+            .execute(query);
+        return datosJson.recordsets[0];
+
+    } catch (error) {
+        console.log(error);
+    }
+};
 
 module.exports={
     consultarDatos,
-    insertDataSpGreCmp
+    insertDataSpGreCmp,
+    insertDataSpGreCmpTiemposPtoControl
 }
