@@ -28,7 +28,7 @@ const main = async () => {
             //const msg   = await processRecords();
             /* console.log('Ingreso por el dato correcto'); */
             cron.schedule('*/5 * * * *', processRecords);
-            /* cron.schedule('* * * * *', processRecords); */
+            //cron.schedule('* * * * *', processRecords);
             //console.log(msg);
         } catch (error) {
             console.error('Error al Ejecutar Procesos:', error);
