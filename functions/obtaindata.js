@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const datosJsonOntrack = async (programapesca,hours)=>{
+const datosJsonOntrack = async (programapesca,hours,nombreobjeto)=>{
     let datosjson ;
     try {
         /*
@@ -14,7 +14,8 @@ const datosJsonOntrack = async (programapesca,hours)=>{
         if (data.error) {
             datosjson   =   {};
         }else{
-            datosjson   =   data['Tiempo en Puntos de Control'].rows;
+            /* datosjson   =   data['Tiempo en Puntos de Control'].rows; */
+            datosjson   =   data[nombreobjeto].rows;
         }
     /*     console.log(datosjson) */
     } catch (error) {

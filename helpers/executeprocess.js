@@ -1,6 +1,6 @@
 const   {consultarDatos}            =   require('../sql/callstoreprocedure');
 const   {datosJsonOntrack}          =   require('../functions/obtaindata');
-const   {insertDataOnTable}         =   require('../sql/models');
+const   {insertDataOnTable, insertDataOnTablePesca}         =   require('../sql/models');
 /*
 *   Permite Ejecutar el proceso para obtencion de datos e ingreso de información
 */
@@ -32,26 +32,32 @@ const processRecords = async () => {
              */
             for (const item of datosprogramapesca) {
                 /*
-                 * Paso 2 : Consulto a Ontrack por Programa de Pesca
+                 * Paso 2 : Consulto a Ontrack por Programa de Pesca para los  Puntos de control e Inicio y Fin de Pesca
                  */
                 const   tiempo_horas            =   48;
-                const   jsonontrack             =   await datosJsonOntrack(item.prgPesca,tiempo_horas);
+                const   objetoJsonOntrack       =   'Tiempo en Puntos de Control';   
+                const   jsonontrack             =   await datosJsonOntrack(item.prgPesca,tiempo_horas,objetoJsonOntrack);
+                const   objetoJsonOntrackPeca   =   'Pesca'; 
+                const   jsonontrackPesca        =   await datosJsonOntrack(item.prgPesca,tiempo_horas,objetoJsonOntrackPeca);
                 /*
                 * Paso 3 : Insertar los datos del objeto Tiempo en ruta 
                 * Se Valida que el objeto no venga vació para proceder con lo demás 
                 */
-                //const   existe         =   !!infoTributaria.agenteRetencion;
-                //const agenteRetencion               =   existeagenteretencion ? infoTributaria.agenteRetencion[0]: '';//Valor Neto
                 if (jsonontrack.length > 0) {
                     const   spname          =   'Sp_Cmp_Insertar_Tiempos_Guias'
                     const   insertardatos   =   await insertDataOnTable(jsonontrack,spname);   
+                }
+                if (jsonontrackPesca.length > 0) {
+                    const   spnamePesca     =   'Sp_Cmp_Insertar_Tiempos_Guias_Pesca'
+                    const   insertardatos   =   await insertDataOnTablePesca(jsonontrackPesca,spnamePesca);   
                 }
                 //console.log(`Código: ${item.codmsg}, Programa de Pesca: ${item.prgPesca}`);
             }              
             /*
             * Paso 4 : Procesar las guía y enviarlas a guardar a la tabla de cabecera y detalle 
             */
-            const datosGreProcesadas = await consultarDatos('PRG', 'Sp_Cmp_Procesar_Guias_Ontrack');
+            const datosGreProcesadas    = await consultarDatos('PRG', 'Sp_Cmp_Procesar_Guias_Ontrack');
+            const datosGreProcesadasPes = await consultarDatos('PRG', 'Sp_Cmp_Procesar_Guias_Ontrack_Pesca');
             
         } else {
             msg = {

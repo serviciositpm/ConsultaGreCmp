@@ -64,9 +64,35 @@ const insertDataSpGreCmpTiemposPtoControl = async (grouping,conductor,guia,placa
         console.log(error);
     }
 };
+/*
+* Invocación de Procedimiento en Sql para poder insertar datos de las guias con sus tiempos de pesca
+*/
+const insertDataSpGreCmpPescas = async (grouping,conductor,Placa,Guia,Inicio,Fin,Duracion,TiempoTotal,TiempoEntre,Granja,Cantidad, query) => {
+    try {
+        let pool = await sql.connect(config);
+        let datosJson = await pool.request()
+            .input('Grouping', sql.Char,grouping)
+            .input('Conductor', sql.Char,conductor)
+            .input('Placa', sql.Char,Placa)
+            .input('Guia', sql.Char,Guia)
+            .input('Inicio', sql.Char,Inicio)
+            .input('Fin', sql.Char,Fin)
+            .input('Duracion', sql.Char,Duracion)
+            .input('TiempoTotal', sql.Char,TiempoTotal)
+            .input('TiempoEntre', sql.Char,TiempoEntre)
+            .input('Granja', sql.Char,Granja)
+            .input('Cantidad', sql.Char,Cantidad)
+            .execute(query);
+        return datosJson.recordsets[0];
+
+    } catch (error) {
+        console.log(error);
+    }
+};
 
 module.exports={
     consultarDatos,
     insertDataSpGreCmp,
-    insertDataSpGreCmpTiemposPtoControl
+    insertDataSpGreCmpTiemposPtoControl,
+    insertDataSpGreCmpPescas
 }
